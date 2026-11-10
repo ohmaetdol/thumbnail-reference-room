@@ -24,3 +24,13 @@ https://ohmaetdol.github.io/thumbnail-reference-room/
 외부 패키지 없이 `python3 -m http.server 8643`으로 로컬 미리보기를 열 수 있습니다. GitHub Pages에서 main 브랜치 루트를 게시합니다.
 
 독립 제작. 배치 비교 아이디어 참고: https://github.com/0xelitesystem/youtube-thumbnail-tester
+
+## 조회수·댓글 수
+
+레퍼런스 카드와 나란히 비교 화면에 조회수·댓글 수 및 확인 시각을 표시합니다. 기존에 공유한 레퍼런스 7개의 실제 공개 수치를 stats.json에 보관합니다. 이는 실시간 수치가 아닙니다. 미확인 값을 0으로 간주하지 않습니다.
+
+새 영상의 수치나 즉시 갱신이 필요하면 화면의 ‘조회수·댓글 수 갱신 및 다른 영상 통계 연결’에서 본인의 YouTube Data API 키를 입력합니다. 키는 탭 메모리에서만 사용하고 자동 저장·작업 JSON에 포함하지 않으며 Google 공식 API로만 전달합니다. 해당 GitHub Pages 주소에 대한 HTTP 리퍼러 제한 및 YouTube Data API 제한을 설정한 키를 사용하세요. API 연결이 없고 stats.json에 없는 영상은 통계 미확인으로 표시합니다.
+
+관리자는 설치된 yt-dlp로 `python3 scripts/refresh_stats.py`를 실행해 기본 레퍼런스의 공개 통계 메타데이터만 갱신할 수 있습니다. 영상·오디오·댓글 본문은 다운로드하지 않습니다. 조회 실패 시 기존 수치를 덮어쓰지 않습니다. 자동 예약 수집은 설정하지 않았습니다. `node --test scripts/stats.test.mjs`로 누락/0 처리와 저장값을 검사합니다.
+
+공식 통계 항목: https://developers.google.com/youtube/v3/docs/videos
